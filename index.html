@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F7F2E8">
+
+    <!-- معلومات الصفحة والمشاركة -->
+    <title>أنامل | ANAMEL — عالم صغير من الحب</title>
+    <meta name="description"
+        content="مرحباً بكم في أنامل، متجر ملابس ومنتجات الأطفال من الولادة حتى 6 سنوات. اكتشفوا منتجاتنا وتواصلوا معنا.">
+    <meta property="og:title" content="أنامل | ANAMEL">
+    <meta property="og:description" content="تفاصيل صغيرة، حب كبير. اكتشفوا عالم أنامل لملابس ومنتجات الأطفال.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_DZ">
+    <meta name="color-scheme" content="light dark">
+
+    <!-- الخط العربي: يعمل الخط الاحتياطي إذا تعذر تحميل Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+       هوية أنامل البصرية
+       ========================================= */
+        :root {
+            color-scheme: light;
+            --ivory: #F7F2E8;
+            --sage: #9BAF8C;
+            --sage-dark: #728A63;
+            --sand: #D8C5A9;
+            --brown: #51463B;
+            --pink: #D9B8B5;
+            --white: #FFFCF7;
+            --muted: #81776B;
+            --border: rgba(81, 70, 59, 0.12);
+            --shadow: 0 18px 55px rgba(81, 70, 59, 0.08);
+            --page-bg: #F7F2E8;
+            --card-bg: #FFFCF7;
+            --button-bg: #FFFFFF;
+            --button-text: #51463B;
+            --radius: 24px;
+        }
+
+        /* دعم الوضع الداكن تلقائياً حسب إعدادات الجهاز */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: dark;
+                --ivory: #22251F;
+                --sage: #A8BB99;
+                --sage-dark: #C1D1B4;
+                --sand: #655847;
+                --brown: #F0E7D8;
+                --pink: #D9B8B5;
+                --white: #2C3029;
+                --muted: #BDB5A8;
+                --border: rgba(240, 231, 216, 0.12);
+                --shadow: 0 18px 55px rgba(0, 0, 0, 0.16);
+                --page-bg: #22251F;
+                --card-bg: #2C3029;
+                --button-bg: #353A31;
+                --button-text: #F0E7D8;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at 5% 5%, rgba(217, 184, 181, 0.17), transparent 34%),
+                radial-gradient(ellipse at 95% 22%, rgba(155, 175, 140, 0.17), transparent 35%),
+                var(--page-bg);
+            color: var(--brown);
+            font-family: "Cairo", Tahoma, Arial, sans-serif;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .page {
+            width: min(100% - 32px, 440px);
+            margin: 0 auto;
+            padding: 24px 0 18px;
+        }
+
+        /* زخارف بسيطة مستوحاة من أوراق النباتات */
+        .top-decoration {
+            position: relative;
+            height: 26px;
+            margin-bottom: 8px;
+            text-align: center;
+            color: var(--sage-dark);
+            font-size: 20px;
+            letter-spacing: 14px;
+            opacity: 0.8;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 30px 22px 25px;
+            text-align: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before,
+        .hero::after {
+            position: absolute;
+            content: "";
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            top: -65px;
+            right: -48px;
+            background: rgba(155, 175, 140, 0.20);
+        }
+
+        .hero::after {
+            bottom: -75px;
+            left: -50px;
+            background: rgba(217, 184, 181, 0.20);
+        }
+
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 94px;
+            height: 94px;
+            margin: 0 auto 12px;
+            border: 1px solid rgba(155, 175, 140, 0.55);
+            border-radius: 50%;
+            background: var(--ivory);
+            color: var(--sage-dark);
+        }
+
+        .brand-mark svg {
+            width: 51px;
+            height: 51px;
+        }
+
+        .brand-name {
+            margin: 0;
+            font-size: clamp(36px, 10vw, 46px);
+            font-weight: 800;
+            line-height: 1.4;
+            letter-spacing: -1px;
+        }
+
+        .brand-english {
+            margin: -1px 0 7px;
+            color: var(--sage-dark);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            direction: ltr;
+        }
+
+        .tagline {
+            margin: 8px 0 0;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .intro {
+            margin: 8px auto 0;
+            max-width: 300px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .age-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 17px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            background: rgba(155, 175, 140, 0.18);
+            color: var(--sage-dark);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 25px 4px 12px;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .section-heading::after {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            content: "";
+        }
+
+        .links {
+            display: grid;
+            gap: 10px;
+        }
+
+        .link-button {
+            position: relative;
+            display: flex;
+            min-height: 62px;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 19px;
+            box-shadow: 0 5px 16px rgba(81, 70, 59, 0.035);
+            transition:
+                transform 160ms ease,
+                border-color 160ms ease,
+                background 160ms ease;
+        }
+
+        .link-button:hover {
+            border-color: var(--sage);
+            transform: translateY(-2px);
+        }
+
+        .link-button:active {
+            transform: scale(0.975);
+        }
+
+        .link-button:focus-visible,
+        .theme-toggle:focus-visible {
+            outline: 3px solid var(--sage-dark);
+            outline-offset: 3px;
+        }
+
+        .link-icon {
+            display: grid;
+            flex: 0 0 42px;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(155, 175, 140, 0.19);
+            color: var(--sage-dark);
+        }
+
+        .link-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .link-copy {
+            display: flex;
+            flex: 1;
+            min-width: 0;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .link-title {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .link-description {
+            overflow: hidden;
+            color: var(--muted);
+            font-size: 11px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .link-arrow {
+            flex-shrink: 0;
+            color: var(--muted);
+            font-size: 20px;
+            line-height: 1;
+            transition: transform 160ms ease;
+        }
+
+        .link-button:hover .link-arrow {
+            transform: translateX(-3px);
+        }
+
+        .save-button {
+            width: 100%;
+            justify-content: center;
+            margin-top: 12px;
+            background: var(--sage);
+            border-color: transparent;
+            color: #24301F;
+            font-weight: 800;
+        }
+
+        .save-button .link-icon {
+            background: rgba(255, 255, 255, 0.32);
+            color: #24301F;
+        }
+
+        .save-button .link-copy {
+            flex: 0 1 auto;
+            text-align: right;
+        }
+
+        .save-button .link-description {
+            color: #35412E;
+            opacity: 0.85;
+        }
+
+        .info-card {
+            padding: 18px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-row+.info-row {
+            margin-top: 17px;
+            padding-top: 17px;
+            border-top: 1px solid var(--border);
+        }
+
+        .info-symbol {
+            display: grid;
+            flex: 0 0 38px;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border-radius: 13px;
+            background: rgba(217, 184, 181, 0.22);
+            font-size: 18px;
+        }
+
+        .info-content {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .info-label {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 13px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .map-shortcut {
+            display: inline-block;
+            margin-top: 5px;
+            color: var(--sage-dark);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .footer {
+            padding: 24px 0 8px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .footer-note {
+            margin: 3px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .footer-flower {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--sage-dark);
+            font-size: 19px;
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 15px;
+            padding: 8px 14px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--brown);
+            cursor: pointer;
+            font-size: 12px;
+            transition: transform 160ms ease;
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.96);
+        }
+
+        /* احترام إعداد تقليل الحركة في الجهاز */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .page {
+                padding-top: 40px;
+                padding-bottom: 30px;
+            }
+        }
+
+        .logo img {
+            max-width: 120px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+
+        <div class="top-decoration" aria-hidden="true">✦ · ✦</div>
+
+        <!-- رأس الصفحة وهوية المتجر -->
+        <header class="hero">
+            <div class="logo">
+                <img src="image/anamel_logo1.png" alt="أنامل">
+            </div>
+
+            <h1 class="brand-name" id="brandName">أنامل</h1>
+            <p class="brand-english" id="brandEnglish">ANAMEL</p>
+
+            <p class="tagline" id="tagline">لأن التفاصيل الصغيرة تصنع سعادتهم</p>
+            
+
+            
+        </header>
+
+        <!-- روابط التواصل والاتصال -->
+        <section aria-labelledby="contactHeading">
+            <h2 class="section-heading" id="contactHeading">يسعدنا تواصلكم معنا</h2>
+
+            <div class="links">
+
+                <a class="link-button" id="phoneLink" href="tel:+213794018177">
+                    <span class="link-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 16.9v3a2 2 0 0 1-2.2 2
+                       19.8 19.8 0 0 1-8.6-3.1
+                       19.4 19.4 0 0 1-6-6
+                       19.8 19.8 0 0 1-3.1-8.7
+                       A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7
+                       c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 8
+                       a16 16 0 0 0 6 6l1.3-1.3
+                       a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7
+                       a2 2 0 0 1 1.7 2Z" />
+                        </svg>
+                    </span>
+                    <span class="link-copy">
+                        <span class="link-title">اتصل بنا</span>
+                        <span class="link-description">نحن هنا للإجابة عن استفساراتكم</span>
+                    </span>
+                    <span class="link-arrow" aria-hidden="true">‹</span>
+                </a>
+
+                <!-- <a class="link-button" id="whatsappLink" href="https://wa.me/213XXXXXXXXX" target="_blank"
+                    rel="noopener noreferrer">
+                    <span class="link-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.6
+                       A8.5 8.5 0 1 1 20.5 11.5Z" />
+                            <path d="M8.5 8.5c.5 2.5 2.5 4.5 5 5l1-1
+                       2 .8-.2 1.5c-4 .8-8.8-4-8-8l1.5-.2.8 2-1 1Z" />
+                        </svg>
+                    </span>
+                    <span class="link-copy">
+                        <span class="link-title">واتساب</span>
+                        <span class="link-description">للطلبات والأسئلة بسرعة وسهولة</span>
+                    </span>
+                    <span class="link-arrow" aria-hidden="true">‹</span>
+                </a> -->
+
+                <a class="link-button" id="instagramLink" href="https://www.instagram.com/anamel4376/"
+                    target="_blank" rel="noopener noreferrer">
+                    <span class="link-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <path d="M17.5 6.5h.01" />
+                        </svg>
+                    </span>
+                    <span class="link-copy">
+                        <span class="link-title">إنستغرام</span>
+                        <span class="link-description">تابعوا جديد أنامل ومنتجاتنا</span>
+                    </span>
+                    <span class="link-arrow" aria-hidden="true">‹</span>
+                </a>
+
+                <!-- <a class="link-button" id="facebookLink" href="https://www.facebook.com/YOUR_PAGE" target="_blank"
+                    rel="noopener noreferrer">
+                    <span class="link-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15 21v-8h3l.5-4H15V7
+                       c0-1.2.4-2 2-2h2V1.5
+                       C18.3 1.3 17.1 1 15.7 1
+                       12.8 1 11 2.8 11 6v3H8v4h3v8Z" />
+                        </svg>
+                    </span>
+                    <span class="link-copy">
+                        <span class="link-title">فيسبوك</span>
+                        <span class="link-description">تابعوا أخبار المتجر والعروض</span>
+                    </span>
+                    <span class="link-arrow" aria-hidden="true">‹</span>
+                </a> -->
+<!-- 
+                <a class="link-button" id="tiktokLink" href="https://www.tiktok.com/@YOUR_USERNAME" target="_blank"
+                    rel="noopener noreferrer">
+                    <span class="link-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M14 3v11.2a4.2 4.2 0 1 1-4-4.2
+                       M14 3c.6 3.1 2.4 4.8 5.5 5" />
+                        </svg>
+                    </span>
+                    <span class="link-copy">
+                        <span class="link-title">تيك توك</span>
+                        <span class="link-description">شاهدوا أحدث الإضافات واللقطات</span>
+                    </span>
+                    <span class="link-arrow" aria-hidden="true">‹</span>
+                </a>
+
+                <a class="link-button" id="mapsLink"
+                    href="https://www.google.com/maps/search/?api=1&query=YOUR_STORE_ADDRESS" target="_blank"
+                    rel="noopener noreferrer">
+                    <span class="link-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                    </span>
+                    <span class="link-copy">
+                        <span class="link-title">موقعنا على خرائط Google</span>
+                        <span class="link-description">اعثروا علينا بسهولة</span>
+                    </span>
+                    <span class="link-arrow" aria-hidden="true">‹</span>
+                </a> -->
+
+            </div>
+
+            <!-- تنزيل جهة الاتصال بصيغة vCard -->
+            <!-- <button class="link-button save-button" id="saveContact" type="button">
+                <span class="link-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v12m-5-5 5 5 5-5" />
+                        <path d="M5 16v4h14v-4" />
+                    </svg>
+                </span>
+                <span class="link-copy">
+                    <span class="link-title">حفظ جهة الاتصال</span>
+                    <span class="link-description">احفظوا رقم أنامل في هاتفكم</span>
+                </span>
+            </button> -->
+        </section>
+
+        <!-- ساعات العمل والعنوان -->
+        <section aria-labelledby="infoHeading">
+            <h2 class="section-heading" id="infoHeading">معلومات المتجر</h2>
+
+            <div class="info-card">
+                <div class="info-row">
+                    <span class="info-symbol" aria-hidden="true">◷</span>
+                    <div class="info-content">
+                        <span class="info-label">ساعات العمل</span>
+                        <div class="info-value" id="openingHours">
+                            من السبت إلى الخميس — 09:00 إلى المغرب
+                        </div>
+                    </div>
+                </div>
+<!-- 
+                <div class="info-row">
+                    <span class="info-symbol" aria-hidden="true">⌖</span>
+                    <div class="info-content">
+                        <span class="info-label">عنواننا</span>
+                        <div class="info-value" id="storeAddress">
+                            أضف عنوان المتجر هنا
+                        </div>
+                        <a class="map-shortcut" id="mapShortcut"
+                            href="https://www.google.com/maps/search/?api=1&query=YOUR_STORE_ADDRESS" target="_blank"
+                            rel="noopener noreferrer">
+                            افتح الموقع على الخريطة ←
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- تذييل الصفحة -->
+        <footer class="footer">
+            <span class="footer-flower" aria-hidden="true">✿</span>
+            <div class="footer-brand">أنامل | ANAMEL</div>
+            <p class="footer-note">صُنعت بكل حب للصغار وأحبابهم ♡</p>
+
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="تغيير مظهر الصفحة">
+                <span id="themeIcon" aria-hidden="true">☾</span>
+                <span id="themeText">الوضع الداكن</span>
+            </button>
+        </footer>
+
+    </main>
+
+    <script>
+        "use strict";
+
+        /* ==================================================
+           إعدادات أنامل — عدّل معلومات متجرك من هنا فقط.
+           استخدم رقم الهاتف الدولي دون + أو مسافات في wa.me.
+           استبدل الروابط التجريبية بروابط حساباتك الحقيقية.
+           ================================================== */
+
+        const CONFIG = {
+            brand: {
+                name: "أنامل",
+                englishName: "ANAMEL",
+                tagline: "تفاصيل صغيرة، حب كبير.",
+                description:
+                    "عالم من الدفء والاختيارات الجميلة لصغاركم، من الولادة حتى عمر 6 سنوات."
+            },
+
+            contact: {
+                // اكتب الرقم بصيغته الدولية، مثال: +213555123456
+                phone: "+213XXXXXXXXX",
+
+                // يجب أن يتكون رقم واتساب من رمز الدولة والرقم دون + أو مسافات.
+                whatsapp: "213XXXXXXXXX",
+
+                email: "",
+
+                // اسم جهة الاتصال المحفوظة في الهاتف
+                contactName: "أنامل | ANAMEL"
+            },
+
+            social: {
+                instagram: "https://www.instagram.com/YOUR_USERNAME/",
+                facebook: "https://www.facebook.com/YOUR_PAGE",
+                tiktok: "https://www.tiktok.com/@YOUR_USERNAME"
+            },
+
+            location: {
+                // ضع عنوان المتجر الحقيقي، بما في ذلك المدينة.
+                address: "أضف عنوان المتجر هنا",
+
+                // الأفضل وضع رابط المشاركة المباشر لموقع المحل من Google Maps.
+                mapsUrl:
+                    "https://www.google.com/maps/search/?api=1&query=YOUR_STORE_ADDRESS"
+            },
+
+            hours: {
+                // عدّل هذه العبارة وفق ساعات العمل الفعلية.
+                display: "من السبت إلى الخميس — 09:00 إلى 19:00"
+            }
+        };
+
+        /* ==================================================
+           ربط الإعدادات بعناصر الصفحة
+           ================================================== */
+
+        const $ = (id) => document.getElementById(id);
+
+        function setText(id, value) {
+            $(id).textContent = value;
+        }
+
+        function setLink(id, url) {
+            $(id).href = url;
+        }
+
+        function setupPage() {
+            setText("brandName", CONFIG.brand.name);
+            setText("brandEnglish", CONFIG.brand.englishName);
+            setText("tagline", CONFIG.brand.tagline);
+            setText("intro", CONFIG.brand.description);
+
+            // الهاتف وواتساب
+            const phone = CONFIG.contact.phone;
+            const whatsapp = CONFIG.contact.whatsapp;
+
+            setLink("phoneLink", "tel:" + phone);
+            setLink("whatsappLink", "https://wa.me/" + whatsapp);
+
+            // الشبكات الاجتماعية
+            setLink("instagramLink", CONFIG.social.instagram);
+            setLink("facebookLink", CONFIG.social.facebook);
+            setLink("tiktokLink", CONFIG.social.tiktok);
+
+            // الخرائط والعنوان
+            setLink("mapsLink", CONFIG.location.mapsUrl);
+            setLink("mapShortcut", CONFIG.location.mapsUrl);
+            setText("storeAddress", CONFIG.location.address);
+
+            // ساعات العمل
+            setText("openingHours", CONFIG.hours.display);
+
+            // عنوان الصفحة الظاهر في تبويب المتصفح
+            document.title =
+                CONFIG.brand.name + " | " + CONFIG.brand.englishName +
+                " — " + CONFIG.brand.tagline;
+        }
+
+        /* ==================================================
+           إنشاء بطاقة جهة اتصال vCard عند الطلب.
+           تعمل دون مكتبات خارجية أو ملف إضافي على الخادم.
+           ================================================== */
+
+        function escapeVCard(value) {
+            return String(value ?? "")
+                .replace(/\\/g, "\\\\")
+                .replace(/\r\n|\r|\n/g, "\\n")
+                .replace(/;/g, "\\;")
+                .replace(/,/g, "\\,");
+        }
+
+        function saveContact() {
+            const lines = [
+                "BEGIN:VCARD",
+                "VERSION:3.0",
+                "FN:" + escapeVCard(CONFIG.contact.contactName),
+                "ORG:" + escapeVCard(CONFIG.brand.name),
+                "TEL;TYPE=WORK,VOICE:" +
+                escapeVCard(CONFIG.contact.phone)
+            ];
+
+            if (CONFIG.contact.whatsapp &&
+                !CONFIG.contact.whatsapp.includes("X")) {
+                lines.push(
+                    "URL;TYPE=WhatsApp:" +
+                    escapeVCard("https://wa.me/" + CONFIG.contact.whatsapp)
+                );
+            }
+
+            if (CONFIG.contact.email) {
+                lines.push(
+                    "EMAIL;TYPE=WORK:" + escapeVCard(CONFIG.contact.email)
+                );
+            }
+
+            lines.push(
+                "ADR;TYPE=WORK:;;" +
+                escapeVCard(CONFIG.location.address) +
+                ";;;;",
+                "URL:" + escapeVCard(CONFIG.location.mapsUrl),
+                "NOTE:" + escapeVCard(CONFIG.brand.tagline),
+                "END:VCARD"
+            );
+
+            const vcard = lines.join("\r\n") + "\r\n";
+            const blob = new Blob(
+                [vcard],
+                {type: "text/vcard;charset=utf-8"}
+            );
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = "Anamel-Contact.vcf";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            // تأخير تحرير الرابط لتحسين التوافق مع بعض المتصفحات.
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+
+        $("saveContact").addEventListener("click", saveContact);
+
+        /* ==================================================
+           تبديل الوضع الداكن والفاتح.
+           الوضع الافتراضي يتبع إعداد الجهاز، ويمكن تغييره
+           يدوياً من الزر أسفل الصفحة.
+           ================================================== */
+
+        const themeToggle = $("themeToggle");
+        const themeIcon = $("themeIcon");
+        const themeText = $("themeText");
+        const colorScheme = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        );
+
+        let manualTheme = null;
+
+        function applyTheme(isDark) {
+            document.documentElement.style.colorScheme =
+                isDark ? "dark" : "light";
+
+            const themeColors = isDark
+                ? {
+                    "--ivory": "#22251F",
+                    "--sage": "#A8BB99",
+                    "--sage-dark": "#C1D1B4",
+                    "--sand": "#655847",
+                    "--brown": "#F0E7D8",
+                    "--pink": "#D9B8B5",
+                    "--white": "#2C3029",
+                    "--muted": "#BDB5A8",
+                    "--border": "rgba(240, 231, 216, 0.12)",
+                    "--shadow": "0 18px 55px rgba(0, 0, 0, 0.16)",
+                    "--page-bg": "#22251F",
+                    "--card-bg": "#2C3029",
+                    "--button-bg": "#353A31",
+                    "--button-text": "#F0E7D8"
+                }
+                : {
+                    "--ivory": "#F7F2E8",
+                    "--sage": "#9BAF8C",
+                    "--sage-dark": "#728A63",
+                    "--sand": "#D8C5A9",
+                    "--brown": "#51463B",
+                    "--pink": "#D9B8B5",
+                    "--white": "#FFFCF7",
+                    "--muted": "#81776B",
+                    "--border": "rgba(81, 70, 59, 0.12)",
+                    "--shadow": "0 18px 55px rgba(81, 70, 59, 0.08)",
+                    "--page-bg": "#F7F2E8",
+                    "--card-bg": "#FFFCF7",
+                    "--button-bg": "#FFFFFF",
+                    "--button-text": "#51463B"
+                };
+
+            for (const [property, value] of Object.entries(themeColors)) {
+                document.documentElement.style.setProperty(property, value);
+            }
+
+            themeIcon.textContent = isDark ? "☀" : "☾";
+            themeText.textContent = isDark ? "الوضع الفاتح" : "الوضع الداكن";
+            themeToggle.setAttribute(
+                "aria-label",
+                isDark ? "التبديل إلى الوضع الفاتح" : "التبديل إلى الوضع الداكن"
+            );
+
+            const themeColor = document.querySelector(
+                'meta[name="theme-color"]'
+            );
+
+            if (themeColor) {
+                themeColor.content = isDark ? "#22251F" : "#F7F2E8";
+            }
+        }
+
+        themeToggle.addEventListener("click", () => {
+            const currentDark = manualTheme === null
+                ? colorScheme.matches
+                : manualTheme;
+
+            manualTheme = !currentDark;
+            applyTheme(manualTheme);
+        });
+
+        colorScheme.addEventListener?.("change", (event) => {
+            if (manualTheme === null) {
+                applyTheme(event.matches);
+            }
+        });
+
+        // تشغيل الصفحة
+        setupPage();
+        applyTheme(colorScheme.matches);
+    </script>
+</body>
+
+</html>
